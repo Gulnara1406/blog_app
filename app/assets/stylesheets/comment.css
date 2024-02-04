@@ -1,0 +1,32 @@
+.comment {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .comment p {
+    margin-bottom: 5px;
+  }
+  
+  .comment strong {
+    font-weight: bold;
+  }
+  
+  .comment .delete-button {
+    color: red;
+    cursor: pointer;
+  }
+  
+  .comment .delete-button:hover {
+    color: darkred;
+  }
+  
+  .comment .delete-button:focus {
+    outline: none;
+  }
+  
+  .comment .delete-button i {
+    margin-right: 5px;
+  }
+  

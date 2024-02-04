@@ -1,0 +1,24 @@
+<div class="container">
+
+
+  <p class="mt-sm">
+    <%= link_to 'Создать новую запись', new_post_path, class: 'button button-main'%> 
+  </p>
+
+  <p class="mt">
+    <%= render 'form', post: @post%>
+  </p>  
+</div>
+<div class="container mt-sm">
+  <h2 class="title-lg"> 
+    <%= @posts.count %>
+    <%= inclination(@posts.count, 'запись','записи','записей')%>
+  </h2>
+</div>
+<% @posts.each do |post| %>
+  <%= link_to post_path(post) do%>
+    <div class="mt container">
+      <%= render post%>
+    </div>
+  <% end %>
+<% end %>

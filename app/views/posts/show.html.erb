@@ -1,0 +1,51 @@
+<div class="container">
+  <% if flash[:alert]%>
+    <%= flash[:alert]%>
+  <% end %>
+  <h2 class="title-lg mb"> Запись <%= @post.id%></h2>
+  <%= render @post%>
+
+  <p class="mt"> <%= link_to "Все записи", posts_path%></p>
+
+  
+  
+  
+  <div class = "container mt">
+    <h2 class = "title-lg mb">Комментарии</h2>
+    <% if @post.comments.any? %>
+      <% @post.comments.each do |comment| %>
+        <div class="comment">
+          <% if comment.user && comment.body.present? %>
+          <p>
+            
+            <strong><%= comment.user.nickname %></strong>: <%= comment.body %> 
+            
+         </p>
+         <% end %>
+        
+         <span class= "text-grey"><%= l(comment.created_at, format: :short)%>
+
+         <% if current_user && current_user == comment.user %>
+           <%= form_with(model: [comment.post, comment], local: true, method: :delete) do |form| %>
+           <%=button_to fa_icon('trash', title: 'Удалить')%>
+         <% end %>
+         <% end %>
+        </div>
+     <% end %>
+   <% else %>
+     <p>Оставьте комментарий первым!</p>
+   <% end %>
+  </div>
+
+  <% if current_user %>
+    <%= form_with(model: [@post, @post.comments.build ], local: true) do |form| %>
+      <p class = "title-lg mt">
+        <%= form.label :body, "Новый комментарий" %> <br>
+        <%= form.text_area :body, rows: 5, class: 'form-text-area'%>
+      </p>
+      <p class = "mt"><%= form.submit 'Опубликовать', class: 'button button-main' %></p>
+    <% end %>
+  <% else %>
+    <p>Вам необходимо <a href = "/session/new">авторизироваться</a> чтобы оставить комментарий</p>
+  <% end %>
+</div>

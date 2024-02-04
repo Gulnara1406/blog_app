@@ -1,0 +1,22 @@
+<div class="mb-sm">
+  <%= post.body%>
+</div>
+
+<div class="text-sm post-footer">
+  <div class="text-grey">
+    <%= l(post.created_at, format: :short)%>
+  </div>
+
+  <div>
+    <% if current_user && post.user_id == current_user.id %>
+      <%= link_to fa_icon('pencil'), edit_post_path(post), title: 'Изменить запись'%>
+      <%= button_to fa_icon('trash-o'), post_path(post), method: :delete, title: 'Удалить запись' %> 
+    <% end %>
+    <%= fa_icon('eye', title: 'Просмотры') %>
+    <span><%= post.views %>
+    <%= fa_icon('user', title: 'Пользователь')%>
+    <span><%= post.user ? post.user.nickname : 'Unknown' %>
+    
+  </div>
+</div>
+
