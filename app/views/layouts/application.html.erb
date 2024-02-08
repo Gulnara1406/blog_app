@@ -15,12 +15,12 @@
       <div class="navbar">
         <p class="title-sm text-bold"><%= link_to 'Blog', root_path %></p>
         <div>
-          <% if current_user.present? %>
+          <% if user_signed_in? %>
             <%= link_to "@#{current_user.nickname}", edit_user_path(current_user), class: 'mr-sm' %>
-            <%= button_to 'Выйти', session_path, method: :delete %>
+            <%= button_to 'Выйти', destroy_user_session_path, method: :delete %>
           <% else %>
-            <%= link_to 'Регистрация', new_user_path, class: 'button button-yellow mr-sm' %>
-            <%= link_to 'Вход', new_session_path, class: 'button button-yellow' %>
+            <%= link_to 'Регистрация', new_user_registration_path, class: 'button button-yellow mr-sm' %>
+            <%= link_to 'Вход', new_user_session_path, class: 'button button-yellow' %>
           <% end %>
         </div>
       </div>
